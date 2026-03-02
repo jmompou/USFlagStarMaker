@@ -61,8 +61,8 @@ def find_best_pattern(n):
                     eff_aspect = c / r
                 else:
                     eff_aspect = c / (r / 2.0)
-                    
-                aspect_diff = abs(eff_aspect - 1.411)
+                # We use ratio-based difference so it correctly penalizes narrow/tall shapes
+                aspect_diff = max(eff_aspect / 1.411, 1.411 / eff_aspect)
                 
                 score = aspect_diff
                 
